@@ -192,7 +192,6 @@
         .logo-emblem {
             width: 50px;
             height: 50px;
-            border: 2px solid var(--gold-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -201,27 +200,9 @@
             overflow: hidden;
         }
 
-        .logo-emblem::before {
-            content: '⚜';
-            font-size: 24px;
-            color: var(--gold-primary);
-        }
-
-        .logo-emblem::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.3), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
+        .logo-emblem svg {
+            width: 100%;
+            height: 100%;
         }
 
         .logo-text {
@@ -367,23 +348,22 @@
                 radial-gradient(ellipse at 60% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%);
         }
 
-        /* UN Emblem Watermark */
-        .un-watermark {
+        /* NNRG MUN Watermark */
+        .mun-watermark {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            opacity: 0.03;
+            width: 500px;
+            height: 500px;
+            opacity: 0.04;
             pointer-events: none;
             z-index: 1;
         }
 
-        .un-watermark svg {
+        .mun-watermark svg {
             width: 100%;
             height: 100%;
-            fill: var(--gold-primary);
         }
 
         /* Animated Grid Lines */
@@ -980,13 +960,15 @@
 
         .committees-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 1000px;
+            margin: 0 auto;
             perspective: 1000px;
         }
 
         .committee-card {
-            height: 450px;
+            height: 500px;
             position: relative;
             cursor: pointer;
         }
@@ -1037,10 +1019,8 @@
         }
 
         .committee-emblem {
-            width: 120px;
-            height: 120px;
-            border: 3px solid var(--gold-primary);
-            border-radius: 50%;
+            width: 140px;
+            height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1050,19 +1030,14 @@
             animation: emblemPulse 3s ease-in-out infinite;
         }
 
-        @keyframes emblemPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            50% { box-shadow: 0 0 30px 10px rgba(212, 175, 55, 0.2); }
+        .committee-emblem svg {
+            width: 100%;
+            height: 100%;
         }
 
-        .committee-emblem-text {
-            font-family: var(--font-display);
-            font-size: 36px;
-            font-weight: 900;
-            background: linear-gradient(180deg, var(--gold-light), var(--gold-primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        @keyframes emblemPulse {
+            0%, 100% { filter: drop-shadow(0 0 0 rgba(212, 175, 55, 0.4)); }
+            50% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); }
         }
 
         .committee-name {
@@ -1439,9 +1414,13 @@
                 font-size: 48px;
             }
 
-            .features-grid,
-            .committees-grid {
+            .features-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .committees-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
             }
 
             .about-features {
@@ -1453,9 +1432,9 @@
                 gap: 40px;
             }
 
-            .un-watermark {
-                width: 400px;
-                height: 400px;
+            .mun-watermark {
+                width: 350px;
+                height: 350px;
             }
         }
 
@@ -1524,7 +1503,7 @@
             }
 
             .committee-card {
-                height: 400px;
+                height: 450px;
             }
 
             .timeline-line {
@@ -1551,9 +1530,9 @@
                 display: block;
             }
 
-            .un-watermark {
-                width: 300px;
-                height: 300px;
+            .mun-watermark {
+                width: 280px;
+                height: 280px;
             }
         }
 
@@ -1625,7 +1604,24 @@
     <nav id="navbar">
         <div class="nav-container">
             <div class="logo">
-                <div class="logo-emblem"></div>
+                <div class="logo-emblem">
+                    <svg width="50" height="50" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="logoGoldGrad" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#FFD97A"/>
+                                <stop offset="50%" stop-color="#D4AF37"/>
+                                <stop offset="100%" stop-color="#B8860B"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="150" cy="150" r="145" fill="#000"/>
+                        <path d="M60 90 C20 150, 60 230, 120 250" stroke="url(#logoGoldGrad)" stroke-width="10" fill="none"/>
+                        <path d="M240 90 C280 150, 240 230, 180 250" stroke="url(#logoGoldGrad)" stroke-width="10" fill="none"/>
+                        <path d="M150 115 C110 125, 80 150, 70 175 C100 160, 120 150, 150 150 C180 150, 200 160, 230 175 C220 150, 190 125, 150 115Z" fill="url(#logoGoldGrad)"/>
+                        <path d="M70 175 C30 150, 30 120, 70 110" fill="url(#logoGoldGrad)"/>
+                        <path d="M230 175 C270 150, 270 120, 230 110" fill="url(#logoGoldGrad)"/>
+                        <circle cx="150" cy="160" r="22" fill="#000" stroke="url(#logoGoldGrad)" stroke-width="3"/>
+                    </svg>
+                </div>
                 <span class="logo-text">NNRG MUN 2026</span>
             </div>
             <ul class="nav-links">
@@ -1643,44 +1639,24 @@
         <div class="hero-bg">
             <div class="grid-lines"></div>
             <div class="particles" id="particles"></div>
-            <!-- UN Emblem Watermark -->
-            <div class="un-watermark">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Globe with Latitude/Longitude Lines -->
-                    <circle cx="100" cy="100" r="70" fill="none" stroke="currentColor" stroke-width="2"/>
-                    <ellipse cx="100" cy="100" rx="70" ry="30" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <ellipse cx="100" cy="100" rx="70" ry="50" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <line x1="100" y1="30" x2="100" y2="170" stroke="currentColor" stroke-width="1.5"/>
-                    <line x1="30" y1="100" x2="170" y2="100" stroke="currentColor" stroke-width="1.5"/>
-                    <!-- Curved lines for longitude -->
-                    <path d="M 100 30 Q 60 100 100 170" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <path d="M 100 30 Q 140 100 100 170" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <!-- Olive Branches -->
-                    <path d="M 20 160 Q 40 140 50 130 Q 55 125 60 120 Q 70 110 80 105" fill="none" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 25 155 Q 30 150 35 148" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M 35 160 Q 40 155 45 150" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M 45 158 Q 50 150 55 145" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M 55 155 Q 60 148 65 140" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M 65 150 Q 70 142 75 135" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <!-- Right branch -->
-                    <path d="M 180 160 Q 160 140 150 130 Q 145 125 140 120 Q 130 110 120 105" fill="none" stroke="currentColor" stroke-width="2"/>
-                    <path d="M 175 155 Q 170 150 165 148" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M 165 160 Q 160 155 155 150" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M 155 158 Q 150 150 145 145" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M 145 155 Q 140 148 135 140" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M 135 150 Q 130 142 125 135" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                    <!-- Leaves on left -->
-                    <ellipse cx="28" cy="152" rx="8" ry="4" transform="rotate(-45, 28, 152)" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <ellipse cx="40" cy="155" rx="8" ry="4" transform="rotate(-40, 40, 155)" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <ellipse cx="50" cy="152" rx="8" ry="4" transform="rotate(-35, 50, 152)" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <ellipse cx="60" cy="148" rx="8" ry="4" transform="rotate(-30, 60, 148)" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <ellipse cx="70" cy="142" rx="8" ry="4" transform="rotate(-25, 70, 142)" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <!-- Leaves on right -->
-                    <ellipse cx="172" cy="152" rx="8" ry="4" transform="rotate(45, 172, 152)" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <ellipse cx="160" cy="155" rx="8" ry="4" transform="rotate(40, 160, 155)" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <ellipse cx="150" cy="152" rx="8" ry="4" transform="rotate(35, 150, 152)" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <ellipse cx="140" cy="148" rx="8" ry="4" transform="rotate(30, 140, 148)" fill="none" stroke="currentColor" stroke-width="1"/>
-                    <ellipse cx="130" cy="142" rx="8" ry="4" transform="rotate(25, 130, 142)" fill="none" stroke="currentColor" stroke-width="1"/>
+            <!-- NNRG MUN Watermark -->
+            <div class="mun-watermark">
+                <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="watermarkGold" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#FFD97A"/>
+                            <stop offset="50%" stop-color="#D4AF37"/>
+                            <stop offset="100%" stop-color="#B8860B"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="150" cy="150" r="145" fill="#000"/>
+                    <path d="M60 90 C20 150, 60 230, 120 250" stroke="url(#watermarkGold)" stroke-width="10" fill="none"/>
+                    <path d="M240 90 C280 150, 240 230, 180 250" stroke="url(#watermarkGold)" stroke-width="10" fill="none"/>
+                    <path d="M150 115 C110 125, 80 150, 70 175 C100 160, 120 150, 150 150 C180 150, 200 160, 230 175 C220 150, 190 125, 150 115Z" fill="url(#watermarkGold)"/>
+                    <path d="M70 175 C30 150, 30 120, 70 110" fill="url(#watermarkGold)"/>
+                    <path d="M230 175 C270 150, 270 120, 230 110" fill="url(#watermarkGold)"/>
+                    <circle cx="150" cy="160" r="22" fill="#000" stroke="url(#watermarkGold)" stroke-width="3"/>
+                    <text x="150" y="60" text-anchor="middle" fill="url(#watermarkGold)" font-size="26" font-weight="bold" font-family="'Playfair Display', serif">NNRG MUN</text>
                 </svg>
             </div>
         </div>
@@ -1779,8 +1755,8 @@
                     <div class="stat-label">Delegates Expected</div>
                 </div>
                 <div class="stat-card reveal stagger-2">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">UN Committees</div>
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Committees</div>
                 </div>
                 <div class="stat-card reveal stagger-3">
                     <div class="stat-number">2</div>
@@ -1837,65 +1813,82 @@
     <section class="committees" id="committees">
         <div class="section-header">
             <span class="section-number">03</span>
-            <div class="section-badge">UN Committees</div>
+            <div class="section-badge">Committees</div>
             <h2 class="section-title reveal">Engage in<br><span class="highlight">Global Discourse</span></h2>
             <p class="section-description reveal">Hover over each committee to discover the agenda</p>
         </div>
 
         <div class="committees-grid">
-            <!-- UNGA -->
+            <!-- DISEC -->
             <div class="committee-card reveal stagger-1">
                 <div class="committee-card-inner">
                     <div class="committee-front">
                         <div class="committee-emblem">
-                            <span class="committee-emblem-text">UN</span>
+                            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="disecGold" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#FFD97A"/>
+                                        <stop offset="50%" stop-color="#D4AF37"/>
+                                        <stop offset="100%" stop-color="#B8860B"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="150" cy="150" r="145" fill="#000"/>
+                                <path d="M55 95 C20 150, 55 230, 120 255" stroke="url(#disecGold)" stroke-width="10" fill="none"/>
+                                <path d="M245 95 C280 150, 245 230, 180 255" stroke="url(#disecGold)" stroke-width="10" fill="none"/>
+                                <circle cx="150" cy="150" r="75" fill="none" stroke="url(#disecGold)" stroke-width="6"/>
+                                <g fill="url(#disecGold)">
+                                    <rect x="140" y="90" width="20" height="70" rx="6"/>
+                                    <polygon points="140,90 160,90 150,65"/>
+                                    <rect x="110" y="115" width="15" height="50" rx="4" transform="rotate(-25 110 115)"/>
+                                    <rect x="175" y="115" width="15" height="50" rx="4" transform="rotate(25 175 115)"/>
+                                </g>
+                            </svg>
                         </div>
-                        <h3 class="committee-name">UNGA</h3>
-                        <p class="committee-full-name">United Nations General Assembly</p>
+                        <h3 class="committee-name">DISEC</h3>
+                        <p class="committee-full-name">Disarmament and International Security Committee</p>
                         <div class="flip-indicator">Hover to view agenda</div>
                     </div>
                     <div class="committee-back">
                         <div class="agenda-label">Committee Agenda</div>
-                        <p class="agenda-text">Addressing climate change adaptation in developing nations with focus on sustainable financing and technology transfer mechanisms.</p>
-                        <div class="committee-back-footer">UNGA • 2026</div>
+                        <p class="agenda-text">Addressing the proliferation of autonomous weapons systems and establishing international frameworks for responsible AI in military applications.</p>
+                        <div class="committee-back-footer">DISEC • 2026</div>
                     </div>
                 </div>
             </div>
 
-            <!-- UNSC -->
+            <!-- AIPPM -->
             <div class="committee-card reveal stagger-2">
                 <div class="committee-card-inner">
                     <div class="committee-front">
                         <div class="committee-emblem">
-                            <span class="committee-emblem-text">SC</span>
+                            <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="aippmGold" x1="0" y1="0" x2="1" y2="1">
+                                        <stop offset="0%" stop-color="#FFD97A"/>
+                                        <stop offset="50%" stop-color="#D4AF37"/>
+                                        <stop offset="100%" stop-color="#B8860B"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="150" cy="150" r="145" fill="#000"/>
+                                <path d="M55 95 C20 150, 55 230, 120 255" stroke="url(#aippmGold)" stroke-width="10" fill="none"/>
+                                <path d="M245 95 C280 150, 245 230, 180 255" stroke="url(#aippmGold)" stroke-width="10" fill="none"/>
+                                <g fill="url(#aippmGold)">
+                                    <rect x="115" y="95" width="70" height="55" rx="8"/>
+                                    <circle cx="135" cy="95" r="12"/>
+                                    <circle cx="165" cy="95" r="12"/>
+                                    <rect x="120" y="150" width="60" height="15"/>
+                                </g>
+                                <circle cx="150" cy="170" r="10" fill="#000" stroke="url(#aippmGold)" stroke-width="2"/>
+                            </svg>
                         </div>
-                        <h3 class="committee-name">UNSC</h3>
-                        <p class="committee-full-name">United Nations Security Council</p>
+                        <h3 class="committee-name">AIPPM</h3>
+                        <p class="committee-full-name">All India Political Parties Meet</p>
                         <div class="flip-indicator">Hover to view agenda</div>
                     </div>
                     <div class="committee-back">
                         <div class="agenda-label">Committee Agenda</div>
-                        <p class="agenda-text">Maintaining international peace and security in regions affected by cyber warfare and emerging security threats in the digital age.</p>
-                        <div class="committee-back-footer">UNSC • 2026</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- WHO -->
-            <div class="committee-card reveal stagger-3">
-                <div class="committee-card-inner">
-                    <div class="committee-front">
-                        <div class="committee-emblem">
-                            <span class="committee-emblem-text">WHO</span>
-                        </div>
-                        <h3 class="committee-name">WHO</h3>
-                        <p class="committee-full-name">World Health Organization</p>
-                        <div class="flip-indicator">Hover to view agenda</div>
-                    </div>
-                    <div class="committee-back">
-                        <div class="agenda-label">Committee Agenda</div>
-                        <p class="agenda-text">Strengthening global health security frameworks and pandemic preparedness in the post-COVID era with equitable access focus.</p>
-                        <div class="committee-back-footer">WHO • 2026</div>
+                        <p class="agenda-text">Deliberating on electoral reforms and strengthening democratic institutions for transparent and accountable governance in India.</p>
+                        <div class="committee-back-footer">AIPPM • 2026</div>
                     </div>
                 </div>
             </div>
